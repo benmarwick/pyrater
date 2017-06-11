@@ -2,7 +2,7 @@
 pyrater
 =======
 
-[![Last-changedate](https://img.shields.io/badge/last%20change-2017--06--10-brightgreen.svg)](https://github.com/benmarwick/mjbtramp/commits/master) [![minimal R version](https://img.shields.io/badge/R%3E%3D-3.4.0-brightgreen.svg)](https://cran.r-project.org/) [![Licence](https://img.shields.io/github/license/mashape/apistatus.svg)](http://choosealicense.com/licenses/mit/) [![Travis-CI Build Status](https://travis-ci.org/benmarwick/pyrater.png?branch=master)](https://travis-ci.org/benmarwick/pyrater) [![ORCiD](https://img.shields.io/badge/ORCiD-0000--0001--7879--4531-green.svg)](http://orcid.org/0000-0001-7879-4531)
+[![Last-changedate](https://img.shields.io/badge/last%20change-2017--06--11-brightgreen.svg)](https://github.com/benmarwick/mjbtramp/commits/master) [![minimal R version](https://img.shields.io/badge/R%3E%3D-3.4.0-brightgreen.svg)](https://cran.r-project.org/) [![Licence](https://img.shields.io/github/license/mashape/apistatus.svg)](http://choosealicense.com/licenses/mit/) [![Travis-CI Build Status](https://travis-ci.org/benmarwick/pyrater.png?branch=master)](https://travis-ci.org/benmarwick/pyrater) [![ORCiD](https://img.shields.io/badge/ORCiD-0000--0001--7879--4531-green.svg)](http://orcid.org/0000-0001-7879-4531)
 
 The goal of pyrater is to give R users access to Daniele Silvestro's [PyRate](https://github.com/dsilvestro/PyRate), a Python program to estimate speciation, extinction, and preservation rates from fossil occurrence data using a Bayesian framework.
 
@@ -18,7 +18,7 @@ devtools::install_github("benmarwick/pyrater")
 Prerequisites
 -------------
 
-You need to have Python 2.7 installed on your machine to use the functions in PyRate. You can download Python 2.7 from <https://www.python.org/download/releases/2.7/>
+You need to have Python 2.7 installed on your machine to use the functions in PyRate. You can download Python 2.7 from <https://www.python.org/download/releases/2.7/>. You will also need [numpy](http://www.numpy.org/) and [scipy](https://www.scipy.org).
 
 Relevant publications
 ---------------------
