@@ -2,7 +2,12 @@ FROM rocker/r-ver:3.4.0
 LABEL maintainer="bmarwick"
 RUN export DEBIAN_FRONTEND=noninteractive; apt-get -y update \
  && apt-get install -y pandoc \
-	pandoc-citeproc
+	pandoc-citeproc \
+	python2.7 \
+	python-pip \
+ && python -m pip install --upgrade pip \
+ && pip install --user numpy scipy matplotlib ipython jupyter pandas sympy nose
 RUN ["install2.r", "-r 'https://cloud.r-project.org'", "Rcpp", "digest", "withr", "rprojroot", "futile.options", "backports", "magrittr", "evaluate", "stringi", "futile.logger", "fortunes", "rmarkdown", "devtools", "lambda.r", "stringr", "yaml", "memoise", "htmltools", "knitr"]
 WORKDIR /payload/
-CMD ["R"]
+CMD ["R -e 'devtools::build()'"]
+

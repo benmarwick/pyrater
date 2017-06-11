@@ -11,6 +11,15 @@ vignette: >
   %\VignetteEncoding{UTF-8}
 ---
 
+```{r setup, echo=FALSE}
+library(knitr)
+opts_chunk$set(cache = TRUE,
+               message = FALSE,
+               warning = FALSE)
+
+```
+
+
 This is a tutorial on using the program PyRate for the analysis of cultural evolution. PyRate was originally developed by Daniele Silvestro and colleagues in a series of papers. We include his Python code here in the PyRate/ directory. I highly recommended reading these papers for additional details, [Methods in Ecology and Evolution](http://onlinelibrary.wiley.com/doi/10.1111/2041-210X.12263/full) and [Systematic Biology](http://sysbio.oxfordjournals.org/content/63/3/349.short).  
 
 The first application of this methodology to cultural data can be found in [Palgrave Communications](http://www.palgrave-journals.com/articles/palcomms201619).
@@ -73,13 +82,13 @@ lapply(car_models_species_pyrate_data, head)
 In the 'species_pyrate_data' data frame we can see that the names of the car models and manufacturers have been replaced by numeric values. The lineage_pyrate function also produces two data frames which provide the keys for linking the numeric values to their names. In all of these files we are loosely borrowing from biology nomenclature by referring to the car models as species and the manufacturers of cars as clades. These terms are used in the most generic way possible with species representing our smallest taxonomic unit (car models or lineages) and clades representing a way to group species, in this case by their manufacturer. 
 It is possible that you may not have a adequate grouping variable (clade) for lineages. If so, simply adjust the numeric clade value to 0 using the following command.  
 
-```{r, eval=FALSE}
-species_pyrate_data$clade <- 0
+```{r, eval=TRUE}
+car_models_species_pyrate_data$species_pyrate_data$clade <- 0
 ```
 
 We will also want to write a text file to be used with the PyRate analysis later on. This file will appear in your current working directory 
 
-```{r,eval=FALSE}
+```{r, eval=TRUE}
 write.table(car_models_species_pyrate_data$species_pyrate_data,
             "lineage_pyrate_data.txt",
             quote=FALSE,
@@ -112,7 +121,7 @@ trait: this refers to some discrete trait that is known about each entry. In thi
 
 The next step is to prepare this occurance data frame for input into Python. This is accomplished by calling the `extract.ages` function which extracts the ages and creates a readable python file: 
 
-```{r, eval=FALSE}
+```{r, eval=TRUE}
 extract.ages(occurrence_pyrate_data)
 ```
 
@@ -147,15 +156,15 @@ summary_plots_occurrence(occurrence_pyrate_data, 100)
 
 # Choosing the best underlying model
 
-The first decision to be made in the analysis of cultural data is whether a birth-death model is an appropriate model for the data under analysis. In this analysis, a birth-death model refers to a continuous-time Markov process where in each time step a the unit of analysis (typically a lineage or new product) can either originate (birth) or go extinct (death). Being that the birth-death model is an example of a continuous-time Markov process, the emergence or discontinuation of a lineage in the future depends on the current state of the model in the previous time step. In PyRate, if a birth-death model is favored, this means that the origination or extinction of a cultural lineage or material culture product is influenced by the existing number of lineages in the previous time step. This can be seen as suggestive of incremental innovation where the emergence of a new lineage or product is strongly influenced by the previous lineage or products available, likely through minor modifications of existing traits. A birth-death model is generally suggestive of a strong inheritance pattern between generations of cultural lineages or artifacts. (For example, a new car model that is a combination of traits from other already existing car models)   
+The first decision to be made in the analysis of cultural data is whether a birth-death model is an appropriate model for the data under analysis. In this analysis, a birth-death model refers to a continuous-time Markov process where in each time step a the unit of analysis (typically a lineage or new product) can either originate (birth) or go extinct (death). Being that the birth-death model is an example of a continuous-time Markov process, the emergence or discontinuation of a lineage in the future depends on the current state of the model in the previous time step. In PyRate, if a birth-death model is favored, this means that the origination or extinction of a cultural lineage or material culture product is influenced by the existing number of lineages in the previous time step. This can be seen as suggestive of incremental innovation where the emergence of a new lineage or product is strongly influenced by the previous lineage or products available, likely through minor modifications of existing traits. A birth-death model is generally suggestive of a strong inheritance pattern between generations of cultural lineages or artifacts. (For example, a new car model that is a combination of traits from other already existing car models).   
 
 In contrast to many biological systems, where birth-death models have been shown to be very reliable, it is not always known if a birth-death model is appropriate for cultural data.  An alternative model, developed for this research, is an immigration-death model. In this model, the emergence or discontinuation of a lineage or product is independent of the previous states of the model. This models has an underlying Poisson distribution which highlights that the emergence or discontinuation of a cultural lineage or product would occur randomly in each time step.  This can be seen as suggestive of more radical innovation or horizontal transmission of traits from individuals or technologies from outside of the direct lineages. (For example, a new car model that has novel traits that were developed in the airline industry). 
 
-In order to test between these two models, the data set will be analyzed in two separate analysis using the -mBDI tag. In order to execute the analysis, the following commands will automatically open a terminal window and execute Python code. You need to have Python 2.7 installed for this to work. You can download this from <https://www.python.org/>. You will also need numpy and scipy for your Python installation. The code below assumes you have Python 2.7 installed at `C:/python27/` (more preceisely, the python.exe file, if you are using Windows). This location may be different on your computer. You should check, and then update the code below so it's correct for your computer. On OSX, you probably just need `python2.7` instead of  `C:/python27/python.exe`
+In order to test between these two models, the data set will be analyzed in two separate analysis using the -mBDI tag. In order to execute the analysis, the following commands will automatically open a terminal window and execute Python code. You need to have Python 2.7 installed for this to work. You can download this from <https://www.python.org/>. You will also need numpy and scipy for your Python installation. The code below assumes you have Python 2.7 installed at `C:/python27/` (more preceisely, the python.exe file, if you are using Windows). This location may be different on your computer. You should check, and then update the code below so it's correct for your computer. On OSX, you probably just need `python2.7` instead of  `C:/python27/python.exe` If you would like to see the console output from these functions, add `intern = TRUE` to the end of the `system()` function.
 
 # Car Models
 
-```{r, eval=FALSE}
+```{r, eval=TRUE}
 
 # set the number of generations. 10,000,000 generations = 10 hrs
 
@@ -165,33 +174,30 @@ n_generations <- 10000
 
 # birth-death model
 system(paste0("C:/python27/python.exe PyRate/PyRate.py -d lineage_pyrate_data.txt -A 2 -mBDI 0 -n ",
-              n_generations), 
-       intern = TRUE)
+              n_generations))
 
 # immigration-death model
 system(paste0("C:/python27/python.exe PyRate/PyRate.py -d lineage_pyrate_data.txt -A 2 -mBDI 1 -n ", 
-              n_generations), 
-       intern = TRUE) 
+              n_generations)) 
 ```
 
 # Pottery Data
 
-```{r, eval=FALSE}
+```{r, eval=TRUE}
 system(paste0("C:/python27/python.exe PyRate/PyRate.py  occurrence_pyrate_data_PyRate.py -A 2 -fixSE null -mBDI 0 -n ", 
-              n_generations), 
-       intern = TRUE) 
+              n_generations)) 
 
 system(paste0("C:/python27/python.exe PyRate/PyRate.py  occurrence_pyrate_data_PyRate.py -A 2 -fixSE null -mBDI 1 -n ", 
-              n_generations), 
-       intern = TRUE) 
+              n_generations)) 
 ```
 
 Upon executing these commands, a new folder will be created in your working directory  called pyrate_mcmc_logs. This analysis uses the default settings of samples every 1,000 generations for 10,000,000 generations.  Details about changes to PyRate default settings can be found in Silvestro et al. 2014. Depending on the speed of the computer, with 10,000,000 generations the car model set will take approximately 7 hours to finish and the pottery data will take approximately 3 hours. If access to a computing cluster is available, this is the preferred option. To reduce the run time of the analysis, simply adjust the number of generations from 10 million to 1 million.  
 
 # Visualizing the Rates of Origination and Extinction
+
 Once the BDMCMC runs are finished, one can easy view the a rate through time plot by using the following commands:
 
-```{r, eval=FALSE}
+```{r, eval=TRUE}
 system("C:/python27/python.exe PyRate/PyRate.py -plot pyrate_mcmc_logs/lineage_pyrate_data_0_ID_marginal_rates.log")
 
 # or 
@@ -254,7 +260,7 @@ plot_RTT(age_rev, R_hpd_M95, R_hpd_m95, R_mean, "darkgreen")
 
 And the occurrence pottery data
 
-```{r,eval=TRUE}
+```{r, eval=TRUE}
 source("pyrate_mcmc_logs/occurrence_pyrate_data_1ID_marginal_rates_RTT.r")
 age_rev <-
   1965 + age # adjust for the most recent date in each of the datasets
@@ -309,11 +315,11 @@ It is important to note that we are unable to quantitatively test whether a birt
 
 To determine the best fitting model, we want to first know how many different rates fit our data.  It is unlikely that the rates of origination and extinction for cultural data through time are constant, but we don't know how many rates best fit the data that we have.  In order to determine this, run the following commands
 
-```{r, eval=FALSE}
-mProb_occurrence_pyrate_data_1BD <- system("C:/python27/python.exe PyRate/PyRate.py  -mProb  pyrate_mcmc_logs/occurrence_pyrate_data_1BD_mcmc.log", 
+```{r, eval=TRUE}
+mProb_occurrence_pyrate_data_1BD <- system("C:/python27/python.exe PyRate/PyRate.py  -mProb  pyrate_mcmc_logs/occurrence_pyrate_data_0_BD_mcmc.log", 
        intern = TRUE) 
 
-mProb_occurrence_pyrate_data_1ID <- system("C:/python27/python.exe PyRate/PyRate.py  -mProb  pyrate_mcmc_logs/occurrence_pyrate_data_1ID_mcmc.log", 
+mProb_occurrence_pyrate_data_1ID <- system("C:/python27/python.exe PyRate/PyRate.py  -mProb  pyrate_mcmc_logs/occurrence_pyrate_data_0_ID_mcmc.log", 
        intern = TRUE) 
 ```
 

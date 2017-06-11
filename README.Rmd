@@ -30,7 +30,7 @@ devtools::install_github("benmarwick/pyrater")
 
 ## Prerequisites
 
-You need to have Python 2.7 installed on your machine to use the functions in PyRate. You can download Python 2.7 from <https://www.python.org/download/releases/2.7/> 
+You need to have Python 2.7 installed on your machine to use the functions in PyRate. You can download Python 2.7 from <https://www.python.org/download/releases/2.7/>. You will also need [numpy](http://www.numpy.org/) and [scipy](https://www.scipy.org).  
 
 ## Relevant publications
 
