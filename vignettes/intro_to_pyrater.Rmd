@@ -32,7 +32,7 @@ library(RCurl)
 
 If you receive an error message from the above line, you probably need to run `install.packages("name_of_library")` to download the package and then try again.
 
-## Getting the raw data from github
+## Loading the raw data
 
 In this tutorial, we will be working with two data sets. The first contains a list of all the car models produced by American manufacturers between 1896 and 2014. This data was used in the [Palgrave Communications paper (Gjesfjeld et al. 2016)](http://www.palgrave-journals.com/articles/palcomms201619). By going through this tutorial similar results should be obtained. The second data set contains a list of archaeological pottery ware types from the American Southwest that have had there names and dates randomized. 
 

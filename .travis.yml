@@ -1,0 +1,18 @@
+# from https://github.com/benmarwick/researchcompendium/blob/master/.travis.yml
+
+# Run docker in travis
+
+sudo: required
+
+# don't need to install R
+language: generic
+
+services:
+  - docker
+
+before_install:
+    # create & run container, i.e. compile pkg and build Vignette
+  - docker build -t benmarwick/pyrater .
+
+# always!
+warnings_are_errors: false
