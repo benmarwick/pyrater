@@ -13,7 +13,7 @@ RUN export DEBIAN_FRONTEND=noninteractive; apt-get -y update \
   ipython-notebook \
   python-pandas \
   python-sympy \
-  python-nose \
+  python-nose
 RUN ["install2.r", "-r 'https://cloud.r-project.org'", "Rcpp", "digest", "withr", "rprojroot", "futile.options", "backports", "magrittr", "evaluate", "stringi", "futile.logger", "fortunes", "rmarkdown", "devtools", "lambda.r", "stringr", "yaml", "memoise", "htmltools", "knitr"]
 WORKDIR /payload/
 CMD ["R -e 'devtools::build()'"]
