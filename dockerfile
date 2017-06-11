@@ -9,8 +9,6 @@ RUN export DEBIAN_FRONTEND=noninteractive; apt-get -y update \
   python-scipy \
   python-matplotlib \
   ipython \
-  jupyter \
-  ipython-notebook \
   python-pandas \
   python-sympy \
   python-nose

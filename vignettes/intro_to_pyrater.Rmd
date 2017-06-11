@@ -80,6 +80,7 @@ lapply(car_models_species_pyrate_data, head)
 ### Lineage data (car model) for PyRate 
 
 In the 'species_pyrate_data' data frame we can see that the names of the car models and manufacturers have been replaced by numeric values. The lineage_pyrate function also produces two data frames which provide the keys for linking the numeric values to their names. In all of these files we are loosely borrowing from biology nomenclature by referring to the car models as species and the manufacturers of cars as clades. These terms are used in the most generic way possible with species representing our smallest taxonomic unit (car models or lineages) and clades representing a way to group species, in this case by their manufacturer. 
+
 It is possible that you may not have a adequate grouping variable (clade) for lineages. If so, simply adjust the numeric clade value to 0 using the following command.  
 
 ```{r, eval=TRUE}
@@ -173,12 +174,15 @@ n_generations <- 10000
 # remember to check the location of your 'python.exe' file for Python 2.7
 
 # birth-death model
-system(paste0("C:/python27/python.exe PyRate/PyRate.py -d lineage_pyrate_data.txt -A 2 -mBDI 0 -n ",
-              n_generations))
+# system(paste0("C:/python27/python.exe PyRate/PyRate.py -d lineage_pyrate_data.txt -A 2 -mBDI 0 -n ", n_generations))
+
+mBDI(input = car_models_species_pyrate_data$species_pyrate_data, 
+     n_generations, 
+     model = 0)
+
 
 # immigration-death model
-system(paste0("C:/python27/python.exe PyRate/PyRate.py -d lineage_pyrate_data.txt -A 2 -mBDI 1 -n ", 
-              n_generations)) 
+system(paste0("C:/python27/python.exe PyRate/PyRate.py -d lineage_pyrate_data.txt -A 2 -mBDI 1 -n ", n_generations)) 
 ```
 
 # Pottery Data

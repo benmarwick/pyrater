@@ -666,3 +666,73 @@ fit.prior <- function(file = NULL, lineage = "root_age"){
 
   cat("Lineage: ", lineage, "; Shape: ", gamm[1], "; Scale: ", 1/gamm[2], "; Offset: ", min(time), sep="", file=outfile, append=FALSE)
 }
+
+
+
+#' Title
+#'
+#' @param path_to_python chr, path to Python 2.7 on your computer
+#' @param n_generations int, number of generations for model to run
+#' @param model int, 0 for birth-death model, 1 for immigration-death
+#'
+#' @return
+#' @export
+#'
+#' @examples
+mBDI <- function(input,
+                 path_to_python,
+                 n_generations = 10000,
+                 model = 0) {
+
+  write.table(input,
+              "lineage_pyrate_data.txt",
+              quote=FALSE,
+              sep="\t",
+              row.names = FALSE)
+
+
+  if (is_windows()) {
+    path_to_python = "C:/python27/python.exe"
+
+  } else {
+    if (is_osx()) {
+      path_to_python = "/usr/bin/python"
+    } else {
+      path_to_python = "python"
+    }
+
+  }
+
+
+  # birth-death model: model = 0
+  # immigration-death model = 1
+
+  system(
+    paste0(
+      path_to_python,
+      " PyRate/PyRate.py -d lineage_pyrate_data.txt",
+      " -A 2 -mBDI ",
+      model,
+      " -n ",
+      n_generations
+    )
+  )
+
+rm("lineage_pyrate_data.txt")
+
+
+}
+
+
+
+
+
+is_windows <- function() {
+  identical(.Platform$OS.type, "windows")
+}
+
+is_osx <- function() {
+  Sys.info()["sysname"] == "Darwin"
+}
+
+
