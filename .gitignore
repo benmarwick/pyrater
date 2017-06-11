@@ -3,3 +3,10 @@
 .RData
 .Ruserdata
 inst/doc
+vignettes/pyrate_mcmc_logs
+vignettes/occurrence_pyrate_data_SpeciesList.txt
+vignettes/lineage_pyrate_data.txt
+vignettes/occurrence_pyrate_data_1ID_marginal_rates_RTT.pdf
+vignettes/lineage_pyrate_data_0_ID_marginal_rates_RTT.pdf
+vignettes/occurrence_pyrate_data_PyRate.pyc
+vignettes/occurrence_pyrate_data_PyRate.py

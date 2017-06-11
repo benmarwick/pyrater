@@ -24,7 +24,7 @@ The goal of pyrater is to give R users access to Daniele Silvestro's [PyRate](ht
 
 You can install this package by running this line:
 
-```{r example}
+```{r eval=FALSE}
 devtools::install_github("benmarwick/pyrater")
 ```
 

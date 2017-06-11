@@ -13,10 +13,6 @@ You can install this package by running this line:
 
 ``` r
 devtools::install_github("benmarwick/pyrater")
-#> Downloading GitHub repo benmarwick/pyrater@master
-#> from URL https://api.github.com/repos/benmarwick/pyrater/zipball/master
-#> Installation failed: 404: Not Found
-#>  (404)
 ```
 
 Prerequisites
