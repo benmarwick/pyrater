@@ -6,7 +6,7 @@ RUN export DEBIAN_FRONTEND=noninteractive; apt-get -y update \
 	python2.7 \
 	python-pip \
  && python -m pip install --upgrade pip \
- && pip install --user numpy scipy matplotlib ipython jupyter pandas sympy nose
+ && pip install numpy scipy matplotlib ipython jupyter pandas sympy nose
 RUN ["install2.r", "-r 'https://cloud.r-project.org'", "Rcpp", "digest", "withr", "rprojroot", "futile.options", "backports", "magrittr", "evaluate", "stringi", "futile.logger", "fortunes", "rmarkdown", "devtools", "lambda.r", "stringr", "yaml", "memoise", "htmltools", "knitr"]
 WORKDIR /payload/
 CMD ["R -e 'devtools::build()'"]
