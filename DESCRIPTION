@@ -1,0 +1,22 @@
+Package: pyrater
+Type: Package
+Title: Estimate Speciation, Extinction, and Preservation Rates
+Version: 0.1.0
+Authors@R: c(person("Erik", "Gjesfjeld", 
+                  email = "egjesfjeld@socgen.ucla.edu",
+                  role = c("aut")),
+            person("Daniele", "Silvestro", 
+                  email = "pyrate.help@gmail.com", 
+                  role = c("aut")),
+            person("Ben", "Marwick", 
+                  email = "benmarwick@gmail.com", 
+                  role = c("ctb", "cre")))
+Maintainer: Ben Marwick <benmarwick@gmail.com>
+Description: An R package for working with Daniele Silvestro's PyRate, a Python program to estimate speciation, extinction, and preservation rates from fossil occurrence data using a Bayesian framework. 
+License: MIT + file LICENSE
+Encoding: UTF-8
+LazyData: true
+Suggests: knitr,
+    rmarkdown
+VignetteBuilder: knitr
+RoxygenNote: 6.0.1

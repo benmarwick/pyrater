@@ -1,0 +1,16 @@
+Species	Status	Trait
+Black_Ware_B	extinct	2.33333333333333
+Brown_Ware_A	extinct	3.19047619047619
+Brown_Ware_B	extinct	2.3953488372093
+Buff_Ware_A	extinct	2.75
+Glaze_Ware_A	extinct	2.75
+Gray_Ware_A	extinct	2.88333333333333
+Gray_Ware_B	extinct	2.86538461538462
+Gray_Ware_C	extinct	3
+Orange_Ware_A	extinct	3.2
+Orange_Ware_B	extinct	2.80555555555556
+Plain_Ware_A	extinct	3.2
+White_Ware_A	extinct	2.97979797979798
+White_Ware_B	extinct	2.73684210526316
+White_Ware_C	extinct	3.0625
+Yellow_Ware_A	extinct	3.16666666666667
